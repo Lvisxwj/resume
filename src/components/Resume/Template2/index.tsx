@@ -242,20 +242,18 @@ export const Template2: React.FC<Props> = props => {
                         <Tag color={theme.tagColor}>{project.project_role}</Tag>
                       )}
                     </div>
-                    <div className="section-detail">
-                      <span>
-                        <FormattedMessage id="项目描述" />：
-                      </span>
-                      <span>{project.project_desc}</span>
-                    </div>
-                    <div className="section-detail">
-                      <span>
-                        <FormattedMessage id="主要工作" />：
-                      </span>
-                      <span className="project-content">
-                        {project.project_content}
-                      </span>
-                    </div>
+                    <div
+                      className="section-detail"
+                      dangerouslySetInnerHTML={{
+                        __html: `<b>项目描述：</b>${project.project_desc.replace(/\n/g, '<br/>')}`,
+                      }}
+                    />
+                    <div
+                      className="section-detail"
+                      dangerouslySetInnerHTML={{
+                        __html: `<b>主要工作：</b>${project.project_content.replace(/\n/g, '<br/>')}`,
+                      }}
+                    />
                   </div>
                 ) : null
               )}
@@ -288,7 +286,12 @@ export const Template2: React.FC<Props> = props => {
                         {end ? ` ~ ${end}` : <FormattedMessage id=" 至今" />}
                       </span>
                     </div>
-                    <div className="work-description">{work.work_desc}</div>
+                    <div
+                      className="work-description"
+                      dangerouslySetInnerHTML={{
+                        __html: work.work_desc.replace(/\n/g, '<br/>'),
+                      }}
+                    />
                   </div>
                 ) : null;
               })}
