@@ -70,12 +70,10 @@ export const Template2: React.FC<Props> = props => {
   /** 作品 */
   const workList = _.get(value, 'workList');
 
-  /** 自我介绍 */
-  const aboutme = _.split(_.get(value, ['aboutme', 'aboutme_desc']), '\n');
-
   return (
     <div className="template2-resume resume-content">
       <div className="basic-info">
+        {/* 头像 + 基础信息 */}
         <div className="profile">
           <div className="profile-info">
             {profile?.name && <div className="name">{profile.name}</div>}
@@ -160,11 +158,10 @@ export const Template2: React.FC<Props> = props => {
             />
           )}
         </div>
-        {/* </Wrapper> */}
+
         {/* 教育背景 */}
         {educationList?.length ? (
           <Wrapper
-            // title=<FormattedMessage id="教育背景" />
             title={titleNameMap.educationList}
             className="section section-education"
             color={theme.color}
@@ -198,9 +195,10 @@ export const Template2: React.FC<Props> = props => {
             })}
           </Wrapper>
         ) : null}
+
+        {/* 个人作品 */}
         {workList?.length ? (
           <Wrapper
-            // title=<FormattedMessage id="个人作品" />
             title={titleNameMap.workList}
             className="section section-work"
             color={theme.color}
@@ -223,76 +221,52 @@ export const Template2: React.FC<Props> = props => {
             })}
           </Wrapper>
         ) : null}
-        <Wrapper
-          title={<FormattedMessage id="自我介绍" />}
-          className="section section-aboutme"
-          color={theme.color}
-        >
-          {aboutme.map((d, idx) => (
-            <div key={`${idx}`}>{d}</div>
-          ))}
-        </Wrapper>
-        {/* 专业技能 */}
-        {skillList?.length ? (
+
+        {/* 项目经历 */}
+        {projectList?.length ? (
           <Wrapper
-            // title=<FormattedMessage id="专业技能" />
-            title={titleNameMap.skillList}
-            className="section section-skill"
+            className="section-project"
+            title={titleNameMap.projectList}
             color={theme.color}
           >
-            {skillList.map((skill, idx) => {
-              const skills = _.split(skill.skill_desc, '\n').join('；');
-              return skills ? (
-                <div className="skill-item" key={idx.toString()}>
-                  <span>
-                    <CheckCircleFilled
-                      style={{ color: '#ffc107', marginRight: '8px' }}
-                    />
-                    {skills}
-                  </span>
-                  {skill.skill_level && (
-                    <Rate
-                      allowHalf
-                      disabled
-                      value={skill.skill_level / 20}
-                      className="skill-rate"
-                    />
-                  )}
-                </div>
-              ) : null;
-            })}
+            <div className="section section-project">
+              {_.map(projectList, (project, idx) =>
+                project ? (
+                  <div className="section-item" key={idx.toString()}>
+                    <div className="section-info">
+                      <b className="info-name">
+                        {project.project_name}
+                        <span className="info-time">{project.project_time}</span>
+                      </b>
+                      {project.project_role && (
+                        <Tag color={theme.tagColor}>{project.project_role}</Tag>
+                      )}
+                    </div>
+                    <div className="section-detail">
+                      <span>
+                        <FormattedMessage id="项目描述" />：
+                      </span>
+                      <span>{project.project_desc}</span>
+                    </div>
+                    <div className="section-detail">
+                      <span>
+                        <FormattedMessage id="主要工作" />：
+                      </span>
+                      <span className="project-content">
+                        {project.project_content}
+                      </span>
+                    </div>
+                  </div>
+                ) : null
+              )}
+            </div>
           </Wrapper>
         ) : null}
-        {/* {awardList?.length ? (
-          <Wrapper
-            // title="更多信息"
-            title={titleNameMap.awardList}
-            className="section section-award"
-            color={theme.color}
-          >
-            {awardList.map((award, idx) => {
-              return (
-                <div key={idx.toString()}>
-                  <TrophyFilled
-                    style={{ color: '#ffc107', marginRight: '8px' }}
-                  />
-                  <span className="info-name">{award.award_info}</span>
-                  {award.award_time && (
-                    <span className="sub-info award-time">
-                      ({award.award_time})
-                    </span>
-                  )}
-                </div>
-              );
-            })}
-          </Wrapper>
-        ) : null} */}
-      </div>
-      <div className="main-info">
+
+        {/* 游戏相关经历（工作经历） */}
         {workExpList?.length ? (
           <Wrapper
             className="experience"
-            // title=<FormattedMessage id="工作经历" />
             title={titleNameMap.workExpList}
             color={theme.color}
           >
@@ -321,46 +295,57 @@ export const Template2: React.FC<Props> = props => {
             </div>
           </Wrapper>
         ) : null}
-        {projectList?.length ? (
+
+        {/* 个人技能 */}
+        {skillList?.length ? (
           <Wrapper
-            className="skill"
-            // title=<FormattedMessage id="项目经历" />
-            title={titleNameMap.projectList}
+            title={titleNameMap.skillList}
+            className="section section-skill"
             color={theme.color}
           >
-            <div className="section section-project">
-              {_.map(projectList, (project, idx) =>
-                project ? (
-                  <div className="section-item" key={idx.toString()}>
-                    <div className="section-info">
-                      <b className="info-name">
-                        {project.project_name}
-                        <span className="info-time">
-                          {project.project_time}
-                        </span>
-                      </b>
-                      {project.project_role && (
-                        <Tag color={theme.tagColor}>{project.project_role}</Tag>
-                      )}
-                    </div>
-                    <div className="section-detail">
-                      <span>
-                        <FormattedMessage id="项目描述" />：
-                      </span>
-                      <span>{project.project_desc}</span>
-                    </div>
-                    <div className="section-detail">
-                      <span>
-                        <FormattedMessage id="主要工作" />：
-                      </span>
-                      <span className="project-content">
-                        {project.project_content}
-                      </span>
-                    </div>
-                  </div>
-                ) : null
-              )}
-            </div>
+            {skillList.map((skill, idx) => {
+              const skills = _.split(skill.skill_desc, '\n').join('；');
+              return skills ? (
+                <div className="skill-item" key={idx.toString()}>
+                  <span>
+                    <CheckCircleFilled
+                      style={{ color: '#ffc107', marginRight: '8px' }}
+                    />
+                    {skills}
+                  </span>
+                  {skill.skill_level && (
+                    <Rate
+                      allowHalf
+                      disabled
+                      value={skill.skill_level / 20}
+                      className="skill-rate"
+                    />
+                  )}
+                </div>
+              ) : null;
+            })}
+          </Wrapper>
+        ) : null}
+
+        {/* 更多信息（奖项） */}
+        {awardList?.length ? (
+          <Wrapper
+            title={titleNameMap.awardList}
+            className="section section-award"
+            color={theme.color}
+          >
+            {awardList.map((award, idx) => {
+              return (
+                <div key={idx.toString()}>
+                  <span className="info-name">{award.award_info}</span>
+                  {award.award_time && (
+                    <span className="sub-info award-time">
+                      ({award.award_time})
+                    </span>
+                  )}
+                </div>
+              );
+            })}
           </Wrapper>
         ) : null}
       </div>
