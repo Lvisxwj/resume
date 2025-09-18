@@ -1,8 +1,8 @@
 ## 🧾 Resume Generator
 
-To QXX, my love:
+### To QXX, my love:
 
-To the world you may be one person, but to one person you are the world. I wish things couldve been different. I love you x2.
+### To the world you may be one person, but to one person you are the world. I wish things couldve been different. I love you x2.
 
 在线简历生成器。首先感谢作者visiky的内容，实在是太棒了，哦我的上帝。✨ [在线编辑](https://visiky.github.io/resume)
 
