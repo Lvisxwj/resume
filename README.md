@@ -1,6 +1,13 @@
 ## 🧾 Resume Generator
 
-在线简历生成器。无须 fork 仓库，即可在线预览、编辑和下载 PDF 简历。✨ [在线编辑](https://visiky.github.io/resume)
+To QXX, my love:
+
+To the world you may be one person, but to one person you are the world. I wish things couldve been different. I love you x2.
+
+在线简历生成器。首先感谢作者visiky的内容，实在是太棒了，哦我的上帝。✨ [在线编辑](https://visiky.github.io/resume)
+
+## 更改了template2的index.tsx，使之更加符合校招的模板格式，其中删除了自我介绍部分，留给你面试的时候和HR掰扯
+## 修改了package.json关于script中关于gastby build的字段，方便windows用户部署（逆天版本不兼容）
 
 内置 3 套模板，支持**自定义主题颜色**、**自定义模块标题**、**国际化(中/英)** 等.
 
@@ -21,7 +28,7 @@
 
 **最后**
 
-访问 https://visiky.github.io/resume?user={user}&branch={branch}
+访问 https://Lvisxwj.github.io/resume?user={user}&branch={branch}
 
 参数说明:
 
